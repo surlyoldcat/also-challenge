@@ -74,6 +74,9 @@
     <Compile Include="Extensions\StringEx.cs" />
     <Compile Include="Extensions\NumberEx.cs" />
     <Compile Include="Extensions\EnumEx.cs" />
+    <Compile Include="PermissionSet.cs" />
+    <Compile Include="PermissionIndex.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Xml" />
