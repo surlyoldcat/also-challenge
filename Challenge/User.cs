@@ -20,6 +20,7 @@ namespace Challenge
                 string[] map = new string[] { "NVarChar", "NVarChar", "DateTime2", "NVarChar", "VarBinary" };
                 object[] vals = new object[] { Username, FavoriteColor, DateCreated, TimeZone, Permissions.IO };
                 var bio = new BlobIO(map, vals);
+                bio.PK = 0;
                 return bio.IO;
 
             }

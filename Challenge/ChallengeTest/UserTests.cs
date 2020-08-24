@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
+using AE.CoreUtility;
 using Challenge;
 using Xunit;
 
@@ -24,6 +25,9 @@ namespace ChallengeTest
             usr.Permissions[PermissionIndex.Perm100] = true;
 
             byte[] userSer = usr.IO;
+
+            BlobIO bio = new BlobIO(usr.IO);
+            Assert.True(bio.PK == 0);
 
             User usr2 = new User();
             usr2.IO = userSer;
