@@ -395,7 +395,7 @@ namespace AE.CoreUtility
             if (sz == int.MaxValue) return null;
             if (ix + sz > buf.Length) throw new IOExException("Invalid string length");
             if (sz <= 0) return String.Empty;
-            string ret = Encoding.ASCII.GetString(buf, ix, sz);
+            string ret = Encoding.UTF8.GetString(buf, ix, sz);
             ix += sz;
             return ret;
         }
