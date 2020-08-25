@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Challenge
 {
+    /// <summary>
+    /// Enumeration of the hard-coded list of 100 permissions
+    /// </summary>
     public enum PermissionIndex
     {
         Perm1 = 0,

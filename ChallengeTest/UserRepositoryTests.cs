@@ -63,5 +63,13 @@ namespace ChallengeTest
 
 
         }
+
+        [Fact]
+        public void AddInvalidUserTest()
+        {
+            string email = String.Empty;
+            IUserRepository repo = new UserRepository();
+            Assert.Throws<ArgumentException>(() => repo.AddUser(email));
+        }
     }
 }

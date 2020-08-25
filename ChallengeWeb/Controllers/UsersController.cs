@@ -23,6 +23,8 @@ namespace ChallengeWeb.Controllers
         [HttpGet("{username}")]
         public IActionResult Get(string username)
         {
+            //http://localhost:65332/api/user/rick@marscolony.gov
+
             //as per spec, tell the repo to create a new user 
             //if one doesn't already exist for the username
             User u = Repo.FetchUser(username, true);

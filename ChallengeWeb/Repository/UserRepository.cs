@@ -3,8 +3,6 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Threading.Tasks;
 using Challenge;
 
 namespace ChallengeWeb.Repository
@@ -27,8 +25,17 @@ namespace ChallengeWeb.Repository
         public UserRepository()
         { }
 
+        /// <summary>
+        /// Fetches a User instance from the data store, by Username
+        /// </summary>
+        /// <param name="username">Username (PK) to fetch</param>
+        /// <param name="addIfMissing">If true, will attempt to create a new user if there is no match</param>
+        /// <returns>a User if one is found or created, otherwise null</returns>
         public User FetchUser(string username, bool addIfMissing)
         {
+            if (String.IsNullOrEmpty(username))
+                throw new ArgumentException("Username is required.");
+
             if (addIfMissing)
                 return _users.GetOrAdd(username, AddUser);
 
@@ -39,12 +46,26 @@ namespace ChallengeWeb.Repository
 
         }
 
+        /// <summary>
+        /// Given a username, creates a new User instance with pseudo-random initial values
+        /// and writes it to the data store.
+        /// </summary>
+        /// <param name="username">Username (PK)</param>
+        /// <returns>A new User with random-ish values</returns>
         public User AddUser(string username)
         {
+            if (String.IsNullOrEmpty(username))
+                throw new ArgumentException("Username is required.");
+
             User u = RandomUser(username);
             return AddUser(u);
         }
 
+        /// <summary>
+        /// Adds an already-created User object to the data store
+        /// </summary>
+        /// <param name="usr">User to add</param>
+        /// <returns>The same user (refetched after write)</returns>
         public User AddUser(User usr)
         {
             _users[usr.Username] = usr;
@@ -84,6 +105,7 @@ namespace ChallengeWeb.Repository
 
         private static DateTime RandomDate()
         {
+            //just pick a day from earlier in 2020
             int dayOfYear = _rand.Next(0, DateTime.Now.DayOfYear);
             return new DateTime(2020, 1, 1).AddDays(dayOfYear);
         }

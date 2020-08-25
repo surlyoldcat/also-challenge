@@ -6,6 +6,12 @@ using AE.CoreUtility;
 
 namespace Challenge
 {
+    /// <summary>
+    /// A fictional but colorful User
+    /// </summary>
+    /// <remarks>For a 'business object' attributes like FavoriteColor
+    /// and TimeZone should probably be built-in .Net types, but for this
+    /// exercise I didn't want to add unnecessary complexity.</remarks>
     public class User : IOBinary
     {
         public string Username { get; set; }
