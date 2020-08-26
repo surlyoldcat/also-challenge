@@ -28,6 +28,16 @@
 
    - Concept or element that was unfamiliar or unexpected
 
+     > RKT: My guess is that BlobIO is intended for use in SQL Server stored procs. This is a feature I never got around to using, because it was always forbidden by the DBA team.  It's also the first time I've seen custom binary serialization used for writing to a DB.
+
+
    - Constructive review or recommended improvement
 
+     > RKT: I generally prefer to stay away from operator overloading and stick to the more verbose OO way of naming methods, but if this is to be consumed inside of stored procs, I can see why it could be advantageous. One thing I'm a little more concerned about is 'properties' that have lots of side-effects and mutate objects' internal state in multiple ways. I think I'd prefer to have the BinaryIO interface implemented with regular methods, rather than properties. 
+
+
    - Opportunity or future enhancement
+
+     
+
+     > RKT: It might be beneficial to split BlobIO into multiple classes, to segregate state management vs utility methods. Also, it would help to break up the single unit test into multiple feature-specific and data-driven tests, to make it easier to pinpoint potential issues.
